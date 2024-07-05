@@ -5,6 +5,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { db } from "../firebase";
 import { updateDoc, doc, onSnapshot } from "firebase/firestore";
 import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const SavedShows = () => {
   const [movies, setMovies] = useState([]);
@@ -49,7 +50,7 @@ const SavedShows = () => {
         />
         <div
           id={"slider"}
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
+          className="w-full h-full ml-7 overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {movies.map((item, id) => (
             <div
@@ -62,9 +63,11 @@ const SavedShows = () => {
                 alt={item?.title}
               />
               <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
-                <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
-                  {item?.title}
-                </p>
+                <Link to={`/player/${item.id}`}>
+                  <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
+                    {item?.title}
+                  </p>
+                </Link>
                 <p
                   onClick={() => deleteShow(item.id)}
                   className="absolute text-gray-300 top-4 right-4"

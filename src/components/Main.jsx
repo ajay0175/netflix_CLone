@@ -2,9 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import requests from "../Requests";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   const movie = movies[Math.floor(Math.random() * movies.length)];
   useEffect(() => {
@@ -32,10 +34,12 @@ const Main = () => {
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt={movie?.title}
         />
-        <div className="absolute w-full top-[20%] p-4 md:p-8">
+        <div className="absolute w-full top-[40%] p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl font-bold">{movie?.title}</h1>
           <div className="my-4">
-            <button className="border bg-gray-300 text-black border-gray-300 py-2 px-5">
+            <button 
+              onClick={() => {navigate(`player/${movie.id}`)}}
+            className="border bg-gray-300 text-black border-gray-300 py-2 px-5">
               Play
             </button>
             <button className="border text-white border-gray-300 py-2 px-5 ml-4">

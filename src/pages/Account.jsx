@@ -1,9 +1,11 @@
 import React from "react";
 import SavedShows from "../components/SavedShows";
+import Navbar from "../components/Navbar";
 
 const Account = () => {
   return (
     <>
+        <Navbar />
       <div className="w-full text-white">
         <img
           className="w-full h-[400px] object-cover"
@@ -16,6 +18,7 @@ const Account = () => {
         </div>
       </div>
       <SavedShows />
+  
     </>
   );
 };
